@@ -8,6 +8,7 @@ import { ArrowRight, Sparkles, Copy, RefreshCw, Volume2, VolumeX } from "lucide-
 import { useToast } from "@/hooks/use-toast"
 import { motion } from "framer-motion"
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight"
+import { SpotlightBackground } from "@/components/ui/spotlight-background"
 
 export default function Home() {
   const [input, setInput] = useState("")
@@ -182,124 +183,124 @@ export default function Home() {
           <Highlight className="text-black dark:text-white">
             一键生成可以听的互联网黑话。
           </Highlight>
+          ✨🔊
         </motion.h1>
       </HeroHighlight>
-
-      <div className="container mx-auto px-4 pb-8 max-w-4xl">
-        {/* Main Tool */}
-        <div className="grid md:grid-cols-2 gap-6 my-8">
-          {/* Input */}
-          <Card className="shadow-lg border-0 bg-card">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-card-foreground">
-                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                普通话输入
-              </CardTitle>
-              <CardDescription>输入你想要表达的内容，越简单越好</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Textarea
-                placeholder="例如：我想做个群，发红包让大家活跃一下..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="min-h-[120px] resize-none focus:border-ring focus:ring-ring"
-              />
-              <Button
-                onClick={handleTranslate}
-                disabled={isLoading}
-                className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                {isLoading ? (
-                  <>
-                    <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                    转换中...
-                  </>
-                ) : (
-                  <>
-                    <ArrowRight className="mr-2 h-4 w-4" />
-                    转换成黑话
-                  </>
-                )}
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Output */}
-          <Card className="shadow-lg border-0 bg-card">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-card-foreground">
-                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                互联网黑话输出
-              </CardTitle>
-              <CardDescription>高大上的专业表达，让你瞬间变身行业专家</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="min-h-[120px] p-3 bg-muted/50 rounded-lg border relative">
-                {output ? (
-                  <p className="text-card-foreground leading-relaxed">{output}</p>
-                ) : (
-                  <p className="text-muted-foreground italic">转换后的黑话将在这里显示...</p>
-                )}
-              </div>
-              <div className="flex gap-2 mt-4">
+      <SpotlightBackground>
+        <div className="container mx-auto px-4 pb-8 max-w-4xl">
+          {/* Main Tool */}
+          <div className="grid md:grid-cols-2 gap-6 my-8">
+            {/* Input */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-card-foreground">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  普通话输入
+                </CardTitle>
+                <CardDescription>输入你想要表达的内容，越简单越好</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Textarea
+                  placeholder="例如：我想做个群，发红包让大家活跃一下..."
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="min-h-[120px] resize-none focus:border-ring focus:ring-ring"
+                />
                 <Button
-                  onClick={handleCopy}
-                  disabled={!output}
-                  variant="outline"
-                  className="flex-1"
+                  onClick={handleTranslate}
+                  disabled={isLoading}
+                  className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90"
                 >
-                  <Copy className="mr-2 h-4 w-4" />
-                  复制黑话
-                </Button>
-                <Button
-                  onClick={handleGenerateAudio}
-                  disabled={!output || isGeneratingAudio}
-                  variant="secondary"
-                  className="flex-1"
-                >
-                  {isGeneratingAudio ? (
+                  {isLoading ? (
                     <>
                       <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                      生成中...
+                      转换中...
                     </>
                   ) : (
                     <>
-                      <Volume2 className="mr-2 h-4 w-4" />
-                      生成语音
+                      <ArrowRight className="mr-2 h-4 w-4" />
+                      转换成黑话
                     </>
                   )}
                 </Button>
-              </div>
-              {audioUrl && (
-                <Button
-                  onClick={handlePlayAudio}
-                  className="w-full mt-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white"
-                >
-                  {isPlaying ? (
-                    <>
-                      <VolumeX className="mr-2 h-4 w-4" />
-                      停止播放
-                    </>
-                  ) : (
-                    <>
-                      <Volume2 className="mr-2 h-4 w-4" />
-                      播放语音
-                    </>
-                  )}
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+              </CardContent>
+            </Card>
 
-        {/* Examples */}
-        <Card className="shadow-lg border-0 bg-card">
-          <CardHeader>
-            <CardTitle className="text-card-foreground">转换示例</CardTitle>
-            <CardDescription>看看普通话是如何华丽转身的</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+            {/* Output */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-card-foreground">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  互联网黑话输出
+                </CardTitle>
+                <CardDescription>高大上的专业表达，让你瞬间变身行业专家</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="min-h-[120px] p-3 bg-muted/50 rounded-lg border relative">
+                  {output ? (
+                    <p className="text-card-foreground leading-relaxed">{output}</p>
+                  ) : (
+                    <p className="text-muted-foreground italic">转换后的黑话将在这里显示...</p>
+                  )}
+                </div>
+                <div className="flex gap-2 mt-4">
+                  <Button
+                    onClick={handleCopy}
+                    disabled={!output}
+                    variant="outline"
+                    className="flex-1"
+                  >
+                    <Copy className="mr-2 h-4 w-4" />
+                    复制黑话
+                  </Button>
+                  <Button
+                    onClick={handleGenerateAudio}
+                    disabled={!output || isGeneratingAudio}
+                    variant="secondary"
+                    className="flex-1"
+                  >
+                    {isGeneratingAudio ? (
+                      <>
+                        <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+                        生成中...
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="mr-2 h-4 w-4" />
+                        生成语音
+                      </>
+                    )}
+                  </Button>
+                </div>
+                {audioUrl && (
+                  <Button
+                    onClick={handlePlayAudio}
+                    className="w-full mt-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white"
+                  >
+                    {isPlaying ? (
+                      <>
+                        <VolumeX className="mr-2 h-4 w-4" />
+                        停止播放
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="mr-2 h-4 w-4" />
+                        播放语音
+                      </>
+                    )}
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Examples */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-card-foreground">转换示例</CardTitle>
+              <CardDescription>看看普通话是如何华丽转身的</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
               {examples.map((example, index) => (
                 <div
                   key={index}
@@ -319,15 +320,15 @@ export default function Home() {
                   </div>
                 </div>
               ))}
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        {/* Footer */}
-        <div className="text-center mt-8 text-muted-foreground">
-          <p>让每一句话都充满专业感，还能用语音念出来 ✨🔊</p>
+          {/* Footer */}
+          <div className="text-center mt-8 text-muted-foreground">
+            <p>让每一句话都充满专业感，还能用语音念出来 ✨🔊</p>
+          </div>
         </div>
-      </div>
+      </SpotlightBackground>
     </div>
   )
 }

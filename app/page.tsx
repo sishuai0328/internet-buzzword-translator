@@ -6,6 +6,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Sparkles, Copy, RefreshCw, Volume2, VolumeX } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { motion } from "framer-motion"
+import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight"
 
 export default function Home() {
   const [input, setInput] = useState("")
@@ -159,20 +161,33 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary-foreground bg-clip-text text-transparent">
-              互联网黑话生成器
-            </h1>
-          </div>
-          <p className="text-muted-foreground text-lg">将普通话瞬间转换成高大上的互联网黑话，还能用语音念出来！</p>
-        </div>
+      {/* Header */}
+      <HeroHighlight>
+        <motion.h1
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: [20, -5, 0],
+          }}
+          transition={{
+            duration: 0.5,
+            ease: [0.4, 0.0, 0.2, 1],
+          }}
+          className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-foreground max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+        >
+          你的下一句话，何必说得那么普通。{" "}
+          <Highlight className="text-black dark:text-white">
+            一键生成可以听的互联网黑话。
+          </Highlight>
+        </motion.h1>
+      </HeroHighlight>
 
+      <div className="container mx-auto px-4 pb-8 max-w-4xl">
         {/* Main Tool */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-6 my-8">
           {/* Input */}
           <Card className="shadow-lg border-0 bg-card">
             <CardHeader>

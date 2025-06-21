@@ -158,25 +158,25 @@ export default function Home() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="h-8 w-8 text-purple-600" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              互联网黑话大师
+            <Sparkles className="h-8 w-8 text-primary" />
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary-foreground bg-clip-text text-transparent">
+              互联网黑话生成器
             </h1>
           </div>
-          <p className="text-gray-600 text-lg">将普通话瞬间转换成高大上的互联网黑话，还能用语音念出来！</p>
+          <p className="text-muted-foreground text-lg">将普通话瞬间转换成高大上的互联网黑话，还能用语音念出来！</p>
         </div>
 
         {/* Main Tool */}
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Input */}
-          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+          <Card className="shadow-lg border-0 bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-gray-800">
+              <CardTitle className="flex items-center gap-2 text-card-foreground">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                 普通话输入
               </CardTitle>
@@ -187,12 +187,12 @@ export default function Home() {
                 placeholder="例如：我想做个群，发红包让大家活跃一下..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="min-h-[120px] resize-none border-gray-200 focus:border-purple-400 focus:ring-purple-400"
+                className="min-h-[120px] resize-none focus:border-ring focus:ring-ring"
               />
               <Button
                 onClick={handleTranslate}
                 disabled={isLoading}
-                className="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+                className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {isLoading ? (
                   <>
@@ -210,20 +210,20 @@ export default function Home() {
           </Card>
 
           {/* Output */}
-          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+          <Card className="shadow-lg border-0 bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-gray-800">
+              <CardTitle className="flex items-center gap-2 text-card-foreground">
                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                 互联网黑话输出
               </CardTitle>
               <CardDescription>高大上的专业表达，让你瞬间变身行业专家</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="min-h-[120px] p-3 bg-gray-50 rounded-lg border border-gray-200 relative">
+              <div className="min-h-[120px] p-3 bg-muted/50 rounded-lg border relative">
                 {output ? (
-                  <p className="text-gray-800 leading-relaxed">{output}</p>
+                  <p className="text-card-foreground leading-relaxed">{output}</p>
                 ) : (
-                  <p className="text-gray-400 italic">转换后的黑话将在这里显示...</p>
+                  <p className="text-muted-foreground italic">转换后的黑话将在这里显示...</p>
                 )}
               </div>
               <div className="flex gap-2 mt-4">
@@ -231,7 +231,7 @@ export default function Home() {
                   onClick={handleCopy}
                   disabled={!output}
                   variant="outline"
-                  className="flex-1 border-gray-300 hover:bg-gray-50"
+                  className="flex-1"
                 >
                   <Copy className="mr-2 h-4 w-4" />
                   复制黑话
@@ -239,8 +239,8 @@ export default function Home() {
                 <Button
                   onClick={handleGenerateAudio}
                   disabled={!output || isGeneratingAudio}
-                  variant="outline"
-                  className="flex-1 border-purple-300 hover:bg-purple-50 text-purple-600"
+                  variant="secondary"
+                  className="flex-1"
                 >
                   {isGeneratingAudio ? (
                     <>
@@ -278,9 +278,9 @@ export default function Home() {
         </div>
 
         {/* Examples */}
-        <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+        <Card className="shadow-lg border-0 bg-card">
           <CardHeader>
-            <CardTitle className="text-gray-800">转换示例</CardTitle>
+            <CardTitle className="text-card-foreground">转换示例</CardTitle>
             <CardDescription>看看普通话是如何华丽转身的</CardDescription>
           </CardHeader>
           <CardContent>
@@ -288,19 +288,19 @@ export default function Home() {
               {examples.map((example, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-gray-200"
+                  className="p-4 bg-gradient-to-r from-muted/50 to-card rounded-lg border border-muted/20"
                 >
                   <div className="mb-2">
                     <span className="text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded">普通话</span>
-                    <p className="mt-2 text-gray-700">{example.input}</p>
+                    <p className="mt-2 text-card-foreground">{example.input}</p>
                   </div>
                   <div className="flex items-center gap-2 my-2">
-                    <ArrowRight className="h-4 w-4 text-purple-500" />
-                    <div className="flex-1 h-px bg-gradient-to-r from-purple-200 to-blue-200"></div>
+                    <ArrowRight className="h-4 w-4 text-primary" />
+                    <div className="flex-1 h-px bg-gradient-to-r from-muted/20 to-card"></div>
                   </div>
                   <div>
                     <span className="text-sm font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded">互联网黑话</span>
-                    <p className="mt-2 text-gray-700 font-medium">{example.output}</p>
+                    <p className="mt-2 text-card-foreground font-medium">{example.output}</p>
                   </div>
                 </div>
               ))}
@@ -309,7 +309,7 @@ export default function Home() {
         </Card>
 
         {/* Footer */}
-        <div className="text-center mt-8 text-gray-500">
+        <div className="text-center mt-8 text-muted-foreground">
           <p>让每一句话都充满专业感，还能用语音念出来 ✨🔊</p>
         </div>
       </div>

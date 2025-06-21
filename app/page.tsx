@@ -165,7 +165,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="h-8 w-8 text-purple-600" />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              互联网黑话生成器
+              互联网黑话大师
             </h1>
           </div>
           <p className="text-gray-600 text-lg">将普通话瞬间转换成高大上的互联网黑话，还能用语音念出来！</p>
